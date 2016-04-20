@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://WS/" xmlns:tns="http://WS/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="buscarPorAutor" type="tns:buscarPorAutor"/>
+
+  <xs:element name="buscarPorAutorResponse" type="tns:buscarPorAutorResponse"/>
+
+  <xs:complexType name="buscarPorAutor">
+    <xs:sequence>
+      <xs:element name="autor" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="buscarPorAutorResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:video" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="video">
+    <xs:sequence>
+      <xs:element name="autor" type="xs:string" minOccurs="0"/>
+      <xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+      <xs:element name="duracion" type="tns:time" minOccurs="0"/>
+      <xs:element name="fechaCreacion" type="tns:date" minOccurs="0"/>
+      <xs:element name="formato" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="reproducciones" type="xs:long" minOccurs="0"/>
+      <xs:element name="titulo" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="time">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="date">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+
