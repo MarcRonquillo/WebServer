@@ -35,10 +35,10 @@ public class Videos implements Serializable {
     private String autor;
 
     @Column(name = "FECHA_CREACION")
-    private Date fechaCreacion;
+    private String fechaCreacion;
 
     @Column(name = "DURACION")
-    private Time duracion;
+    private String duracion;
 
     @Column(name = "REPRODUCCIONES")
     private Long reproducciones;
@@ -53,7 +53,7 @@ public class Videos implements Serializable {
 
     }
 
-    public Videos(String titulo, String autor, Date fechaCreacion, Time duracion, Long reproducciones, String descripcion, String formato) {
+    public Videos(String titulo, String autor, String fechaCreacion, String duracion, Long reproducciones, String descripcion, String formato) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -87,19 +87,19 @@ public class Videos implements Serializable {
         this.autor = autor;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Time getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(Time duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 

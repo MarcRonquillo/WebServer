@@ -32,55 +32,13 @@ import org.hibernate.criterion.Restrictions;
 @Stateless()
 public class BuscarVideo {
 
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "buscarPorAutor")
-    public java.util.List<model.Videos> buscarPorAutor(@WebParam(name = "autor") String autor) {
-       List<Videos> result = new ArrayList<Videos>();
-        Session session = HibernateUtil.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.getTransaction();
-            tx.begin();
-            Criteria criteria = session.createCriteria(Videos.class);
-            
-            if (!autor.equals("")) {
-                criteria.add(Restrictions.ilike("autor", "%" + autor + "%"));
-            }
-            result = criteria.list();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            System.out.println(e);
-        } finally {
-            session.close();
-        }
-
-        return result;
-    }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "buscarVideos")
     public java.util.List<model.Videos> buscarVideos(@WebParam(name = "titulo") String titulo, @WebParam(name = "autor") String autor, @WebParam(name = "fecha") String fecha) {
-
-        java.util.Date fechaCreacion = null;
-        java.sql.Date fechaCreacionSql = null;
-        if (fecha != null) {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-            try {
-                fechaCreacion = (Date) df.parse(fecha);
-            } catch (ParseException ex) {
-                Logger.getLogger(BuscarVideo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            fechaCreacionSql = new java.sql.Date(fechaCreacion.getTime());
-        }
-        
-        
+  
         List<Videos> result = new ArrayList<Videos>();
         Session session = HibernateUtil.openSession();
         Transaction tx = null;
@@ -95,8 +53,8 @@ public class BuscarVideo {
             if (!autor.equals("")) {
                 criteria.add(Restrictions.ilike("autor", "%" + autor + "%"));
             }
-            if (fechaCreacionSql != null) {
-                criteria.add(Restrictions.eq("fechaCreacion", fechaCreacionSql));
+            if (!fecha.equals("")) {
+                criteria.add(Restrictions.sqlRestriction("{alias}.fecha_creacion = "+"'"+fecha+"'"));
             }
             result = criteria.list();
         } catch (Exception e) {
