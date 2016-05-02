@@ -48,12 +48,15 @@ public class Videos implements Serializable {
 
     @Column(name = "FORMATO")
     private String formato;
+    
+    @Column(name = "URI")
+    private String uri;
 
     public Videos() {
 
     }
 
-    public Videos(String titulo, String autor, String fechaCreacion, String duracion, Long reproducciones, String descripcion, String formato) {
+    public Videos(String titulo, String autor, String fechaCreacion, String duracion, Long reproducciones, String descripcion, String formato, String uri) {
         this.titulo = titulo;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -61,6 +64,7 @@ public class Videos implements Serializable {
         this.reproducciones = reproducciones;
         this.descripcion = descripcion;
         this.formato = formato;
+        this.uri = uri;
     }
 
     public Long getId() {
@@ -127,4 +131,11 @@ public class Videos implements Serializable {
         this.formato = formato;
     }
 
+    public String getUri(){
+        return this.uri;
+    }
+    
+    public void setUri(String uri){
+        this.uri=uri;
+    }
 }
